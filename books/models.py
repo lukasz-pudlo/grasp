@@ -2,6 +2,11 @@ from django.db import models
 from django.conf import settings
 
 
+class BookReadManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Book.Status.READ)
+
+
 class Book(models.Model):
 
     class Status(models.TextChoices):
@@ -31,6 +36,9 @@ class Book(models.Model):
         max_length=2,
         choices=Status
     )
+
+    objects = models.Manager()
+    read = BookReadManager()
 
     class Meta:
         ordering = ['title']
