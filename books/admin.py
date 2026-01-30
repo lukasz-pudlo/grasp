@@ -5,9 +5,9 @@ from .models import Book, Author, Publication, PublishingHouse
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'slug', 'reader',
+    list_display = ['title', 'slug', 'edition', 'reader',
                     'created', 'updated', 'status']
-    list_filter = ['status', 'reader', 'created', 'updated']
+    list_filter = ['status', 'edition', 'reader', 'created', 'updated']
     search_fields = ['title']
     prepopulated_fields = {'slug': ('title',)}
     ordering = ['title', 'status']

@@ -1,10 +1,13 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.humanize.templatetags.humanize import ordinal
 
 
 class BookReadManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(status=Book.Status.READ)
+        return (
+            super().get_queryset().filter(status=Book.Status.READ)
+        )
 
 
 class Book(models.Model):
@@ -18,6 +21,7 @@ class Book(models.Model):
 
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
+    edition = models.IntegerField()
     author = models.ManyToManyField(
         "Author",
         through="Publication",
@@ -45,7 +49,7 @@ class Book(models.Model):
         models.Index(fields=['title'])
 
     def __str__(self):
-        return self.title
+        return f"{self.title} ({ordinal(self.edition)} edition)"
 
 
 class Author(models.Model):
