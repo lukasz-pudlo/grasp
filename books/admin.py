@@ -11,6 +11,7 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ['title']
     prepopulated_fields = {'slug': ('title',)}
     ordering = ['title', 'status']
+    show_facets = admin.ShowFacets.ALWAYS
 
 
 @admin.register(Author)

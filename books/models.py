@@ -9,6 +9,7 @@ class Book(models.Model):
         STARTED = 'ST', 'Started'
         READ = 'RD', 'Read'
         ABANDONNED = 'AD', 'Abandonned'
+        REREADING = 'RR', 'Rereading'
 
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
