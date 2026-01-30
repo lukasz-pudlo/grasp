@@ -19,10 +19,16 @@ class Book(models.Model):
     reader = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='books'
+        related_name='books',
+        blank=True,
+        null=True
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    status = models.CharField(
+        max_length=2,
+        choices=Status
+    )
 
     class Meta:
         ordering = ['title']
@@ -66,7 +72,10 @@ class Publication(models.Model):
 
 class PublishingHouse(models.Model):
     name = models.CharField(max_length=255)
-    location = models.TextField()
-    established = models.DateField()
+    location = models.TextField(blank=True)
+    established = models.DateField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
