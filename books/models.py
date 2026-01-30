@@ -11,6 +11,7 @@ class Book(models.Model):
         ABANDONNED = 'AD', 'Abandonned'
 
     title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
     author = models.ManyToManyField(
         "Author",
         through="Publication",
