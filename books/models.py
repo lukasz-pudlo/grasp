@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Book(models.Model):
@@ -10,7 +11,18 @@ class Book(models.Model):
         ABANDONNED = 'AD', 'Abandonned'
 
     title = models.CharField(max_length=255)
-    author = models.ManyToManyField("Author", through="Publication")
+    author = models.ManyToManyField(
+        "Author",
+        through="Publication",
+        related_name='books'
+    )
+    reader = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='books'
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['title']
@@ -23,15 +35,26 @@ class Book(models.Model):
 class Author(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
 
 class Publication(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,
+        related_name='publications'
+    )
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    publisher = models.ForeignKey("PublishingHouse", on_delete=models.CASCADE)
+    publisher = models.ForeignKey("PublishingHouse",
+                                  on_delete=models.CASCADE,
+                                  related_name='publications'
+                                  )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     class Meta:
         constraints = [
@@ -45,3 +68,5 @@ class PublishingHouse(models.Model):
     name = models.CharField(max_length=255)
     location = models.TextField()
     established = models.DateField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
