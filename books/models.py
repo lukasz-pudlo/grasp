@@ -84,12 +84,30 @@ class Publication(models.Model):
         ]
 
 
+class PublishingHouseQuerySet(models.QuerySet):
+    def poland(self):
+        return self.filter(country='PL')
+
+    def uk(self):
+        return self.filter(country='UK')
+
+
 class PublishingHouse(models.Model):
+    class Country(models.TextChoices):
+        POLAND = 'PL', 'Poland',
+        UNITED_KINGDOM = 'UK', 'United Kingdom',
+
     name = models.CharField(max_length=255)
-    location = models.TextField(blank=True)
+    address = models.CharField(blank=True)
+    country = models.CharField(
+        max_length=2,
+        choices=Country
+    )
     established = models.DateField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    from_country = PublishingHouseQuerySet.as_manager()
 
     def __str__(self):
         return self.name

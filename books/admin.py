@@ -34,8 +34,9 @@ class PublicationAdmin(admin.ModelAdmin):
 
 @admin.register(PublishingHouse)
 class PublishingHouseAdmin(admin.ModelAdmin):
-    list_display = ['name', 'location', 'established', 'created', 'updated']
+    list_display = ['name', 'address', 'country',
+                    'established', 'created', 'updated']
     list_filter = ['name']
-    search_fields = ['name', 'location']
+    search_fields = ['name', 'country']
     ordering = ['name']
     show_facets = admin.ShowFacets.ALWAYS
