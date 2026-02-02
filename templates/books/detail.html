@@ -1,0 +1,5 @@
+{% extends "books/base.html" %} {% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<h1>{{ book.title }}</h1>
+<p class="status">The status of the books is: {{ book.status }}.</p>
+{% endblock %}
