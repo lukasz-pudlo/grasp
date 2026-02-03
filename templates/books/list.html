@@ -1,10 +1,9 @@
-{% extends "books/base.html" %} {% block title %}My Books{% endblock %} {% block
-content %}
+{% extends "books/base.html" %} {% block title %}My Books{% endblock %} 
+{% block content %}
 <h1>My Books</h1>
 {% for book in books %}
 <h2>
-  <a href="”{%" url 'books:book_detail' book.id %}”> {{ book.title }} </a>
+  <a href="{% url 'books:book_detail' book.id %}"> {{ book.title }} </a>
 </h2>
 <p class="status">The status of the books is: {{ book.status }}.</p>
-{% endfor %} 
-{% endblock %}
+{% endfor %} {% endblock %}
