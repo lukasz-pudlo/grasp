@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import ordinal
+from django.urls import reverse
 
 
 class BookReadManager(models.Manager):
@@ -50,6 +51,12 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title} ({ordinal(self.edition)} edition)"
+
+    def get_absolute_url(self):
+        return reverse(
+            'books:book_detail',
+            args=[self.id]
+        )
 
 
 class Author(models.Model):
