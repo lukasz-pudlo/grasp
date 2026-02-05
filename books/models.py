@@ -32,8 +32,6 @@ class Book(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='books',
-        blank=True,
-        null=True
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -48,6 +46,7 @@ class Book(models.Model):
     class Meta:
         ordering = ['title']
         models.Index(fields=['title'])
+        unique_together = ['title', 'reader']
 
     def __str__(self):
         return f"{self.title} ({ordinal(self.edition)} edition)"
