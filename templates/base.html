@@ -4,8 +4,9 @@
   <head>
     <title>{% block title %}{% endblock %}</title>
     <link href={% static "css/app.css" %} rel="stylesheet" />
+    <script src="htmx.min.js"></script>
   </head>
-  <body>
+  <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
     <div id="content">{% block content %} {% endblock %}</div>
     <div id="sidebar">
       <h2>My books</h2>
