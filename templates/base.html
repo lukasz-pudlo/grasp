@@ -1,16 +1,13 @@
 {% load static %}
 <!doctype html>
-<html>
+<html lang="en-gb">
   <head>
     <title>{% block title %}{% endblock %}</title>
     <link href={% static "css/app.css" %} rel="stylesheet" />
-    <script src="htmx.min.js"></script>
+    <script {% static "htmx.min.js" %}></script>
   </head>
+  <!-- This should be enough to make POST calls -->
   <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
-    <div id="content">{% block content %} {% endblock %}</div>
-    <div id="sidebar">
-      <h2>My books</h2>
-      <p>These are my books.</p>
-    </div>
+  {% block content %} {% endblock %}
   </body>
 </html>

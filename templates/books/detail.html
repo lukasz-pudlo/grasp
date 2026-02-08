@@ -1,5 +1,9 @@
-{% extends "base.html" %} {% block title %}{{ post.title }}{% endblock %}
+{% extends "base.html" %} {% block title %}{{ book.title }}{% endblock %}
 {% block content %}
-<h1>{{ book.title }}</h1>
-<p class="status">The status of the books is: {{ book.status }}.</p>
+<header>
+    <h1>{{ book.title }}</h1>
+</header>
+<main>
+    <p class="status">The status of the books is: {{ book.status }}.</p>
+</main>
 {% endblock %}

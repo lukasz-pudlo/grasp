@@ -1,6 +1,8 @@
 {% extends "base.html" %} {% block title %}My Books{% endblock %} 
 {% load render_table from django_tables2 %}
 {% block content %}
-<h1>My Books</h1>
+<header>
+    <h1>My Books</h1>
+</header>
 {% render_table table %}
 {% endblock %}
