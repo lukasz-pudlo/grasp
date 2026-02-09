@@ -4,7 +4,7 @@
   <head>
     <title>{% block title %}{% endblock %}</title>
     <link href={% static "css/app.css" %} rel="stylesheet" />
-    <script {% static "htmx.min.js" %}></script>
+    <script src={% static "htmx.min.js" %}></script>
   </head>
   <!-- This should be enough to make POST calls -->
   <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
