@@ -8,7 +8,8 @@ from .tables import BookTable
 
 @login_required
 def book_list(request):
-    table = BookTable(Book.objects.filter(reader=request.user))
+    table = BookTable(Book.objects.filter(reader=request.user),
+                      template_name="tables/bootstrap_htmx.html")
     RequestConfig(request, paginate={"per_page": 10}).configure(table)
 
     return render(
