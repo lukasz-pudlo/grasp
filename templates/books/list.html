@@ -1,16 +1,12 @@
 {% extends "base.html" %} {% block title %}My Books{% endblock %} 
-{% load django_tables2 %}
+{% load render_table from django_tables2 %}
 {% block content %}
 <header>
     <h1>My Books</h1>
 </header>
 <main>
     <div
-        hx-get="{% url 'books:book_table' %}"
-        hx-trigger="load"
-        hx-swap="outerHTML"
-    >
-        Loading...
+        {% render_table table %}
     </div>
 </main>
 {% endblock %}
