@@ -5,6 +5,9 @@
     <title>{% block title %}{% endblock %}</title>
     <link href={% static "css/app.css" %} rel="stylesheet" />
     <script src={% static "htmx.min.js" %}></script>
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
   </head>
   <!-- This should be enough to make POST calls -->
   <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
