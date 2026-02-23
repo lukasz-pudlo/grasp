@@ -3,14 +3,37 @@
     Books
 {% endblock %}
 {% block content %}
-<main>
-    <h1 class="mt-4 mb-8 text-2xl leading-none tracking-tight text-black">
+    <h1 class="mt-4 mb-6 text-2xl leading-none tracking-tight md:text-3xl lg:text-4xl flex items-center">
         Books List
     </h1>
-    {% for book in books %}
-        <div>
-            {{ book }}
-        </div>
-    {% endfor %}
-</main>
+
+    <div class="relative overflow-x-auto">
+        {% if books %}
+
+            <table class="table">
+                <thead class="text-xs uppercase">
+                    <tr>
+                        <th class="px-6 py-3">Title</th>
+                        <th class="px-6 py-3">Edition</th>
+                        <th class="px-6 py-3">Status</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.edition }}</td>
+                        <td>{{ book.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% else %}
+            <p class="text-2xl">
+                No books found
+            </p>
+        {% endif %}
+    </div>
+
 {% endblock %}

@@ -2,12 +2,16 @@
 <!doctype html>
 <html lang="en-gb">
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block head_title %}Grasp{% endblock %}</title>
-    <link href={% static "css/app.css" %} rel="stylesheet" />
-    <script src={% static "js/third_party/htmx.2.0.8.min.js" %}></script>
-    {% load django_bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    <!-- HTMX -->
+    <script src="{% static 'js/htmx.2.0.8.min.js' %}"></script>
+    <!-- Tailwind -->
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet" />
+    <!-- Custom files -->
+    <link href="{% static 'css/app.css' %}" rel="stylesheet" />
   </head>
   <!-- This should be enough to make POST calls -->
   <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
