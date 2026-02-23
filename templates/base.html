@@ -12,7 +12,7 @@
     <link href="{% static 'css/tailwind.css' %}" rel="stylesheet" />
   </head>
   <!-- This should be enough to make POST calls -->
-  <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+  <body class="m-10" hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
   {% block content %} {% endblock %}
   </body>
 </html>
