@@ -1,0 +1,20 @@
+{
+  "name": "grasptailwind",
+  "version": "1.0.0",
+  "description": "Tailwind for Grasp",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npx @tailwindcss/cli -i static/css/app.css -o static/css/tailwind.css --minify --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.0",
+    "tailwindcss": "^4.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19"
+  }
+}
