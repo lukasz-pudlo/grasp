@@ -10,8 +10,6 @@
     <script src="{% static 'js/htmx.2.0.8.min.js' %}"></script>
     <!-- Tailwind -->
     <link href="{% static 'css/tailwind.css' %}" rel="stylesheet" />
-    <!-- Custom files -->
-    <link href="{% static 'css/app.css' %}" rel="stylesheet" />
   </head>
   <!-- This should be enough to make POST calls -->
   <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
