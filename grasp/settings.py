@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'django_tables2',
     'django_bootstrap5',
-    'django-filters',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

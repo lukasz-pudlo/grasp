@@ -13,6 +13,7 @@
                 <thead class="text-xs uppercase">
                     <tr>
                         <th class="px-6 py-3">Title</th>
+                        <th class="px-6 py-3">Author</th>
                         <th class="px-6 py-3">Edition</th>
                         <th class="px-6 py-3">Status</th>
                     </tr>
@@ -22,6 +23,11 @@
                     {% for book in books %}
                         <tr>
                             <td>{{ book.title }}</td>
+                            <td>
+                                {% for publication in book.publication_set.all %}
+                                    {{ publication.author }}, 
+                                {% endfor %}
+                            </td>
                             <td>{{ book.edition }}</td>
                             <td>{{ book.status }}</td>
                         </tr>
