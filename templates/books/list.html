@@ -9,7 +9,6 @@
 
     <div class="relative overflow-x-auto">
         {% if books %}
-
             <table class="table">
                 <thead class="text-xs uppercase">
                     <tr>
@@ -18,17 +17,17 @@
                         <th class="px-6 py-3">Status</th>
                     </tr>
                 </thead>
-            </table>
 
-            <tbody>
-                {% for book in books %}
-                    <tr>
-                        <td>{{ book.title }}</td>
-                        <td>{{ book.edition }}</td>
-                        <td>{{ book.status }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
+                <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.edition }}</td>
+                            <td>{{ book.status }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+             </table>
         {% else %}
             <p class="text-2xl">
                 No books found
