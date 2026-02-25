@@ -22,7 +22,7 @@ class Book(models.Model):
 
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
-    edition = models.IntegerField()
+    edition = models.IntegerField(blank=True, null=True)
     author = models.ManyToManyField(
         "Author",
         through="Publication",
