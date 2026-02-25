@@ -5,6 +5,7 @@ verify_ssl = true
 
 [packages]
 django = "*"
+django-filter = "*"
 
 [dev-packages]
 
