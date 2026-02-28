@@ -2,16 +2,20 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
 from .models import Book
+from .filters import BookFilter
 
 
 @login_required
 def book_list(request):
-    books = Book.objects.filter(reader=request.user)
+    book_filter = BookFilter(
+        request.GET,
+        queryset=Book.objects.filter(reader=request.user)
+    )
 
     return render(
         request,
         'books/list.html',
-        {'books': books}
+        {'filter': book_filter}
     )
 
 

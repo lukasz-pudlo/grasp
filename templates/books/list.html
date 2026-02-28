@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block title %}My Books{% endblock %} 
+{% load widget_tweaks %}
 {% block head_title %}
     Books
 {% endblock %}
@@ -8,7 +9,19 @@
     </h1>
 
     <div class="relative overflow-x-auto">
-        {% if books %}
+
+        <form method="GET">
+            <div class="mb-2 form-control">
+                {{ filter.form.book_status|add_label_class:"label" }}
+                {% render_field filter.form.book_status class="select" %}
+                
+            <button class="btn btn-success">
+                Filter
+            </button>
+            </div>
+        </form>
+
+        {% if filter.qs %}
             <table class="table">
                 <thead class="text-xs uppercase">
                     <tr>
@@ -20,7 +33,7 @@
                 </thead>
 
                 <tbody>
-                    {% for book in books %}
+                    {% for book in filter.qs %}
                         <tr>
                             <td>{{ book.title }}</td>
                             <td>
