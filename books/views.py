@@ -9,7 +9,8 @@ from .filters import BookFilter
 def book_list(request):
     book_filter = BookFilter(
         request.GET,
-        queryset=Book.objects.filter(reader=request.user)
+        queryset=Book.objects.filter(
+            reader=request.user).prefetch_related("authors")
     )
 
     if request.htmx:
