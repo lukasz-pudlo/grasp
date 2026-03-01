@@ -12,10 +12,12 @@ def book_list(request):
         queryset=Book.objects.filter(reader=request.user)
     )
 
+    if request.htmx:
+        return render(request, "books/partials/book-container.html", {"filter": book_filter})
     return render(
         request,
-        'books/list.html',
-        {'filter': book_filter}
+        "books/list.html",
+        {"filter": book_filter}
     )
 
 
@@ -29,6 +31,6 @@ def book_detail(request, id):
 
     return render(
         request,
-        'books/detail.html',
-        {'book': book}
+        "books/detail.html",
+        {"book": book}
     )
