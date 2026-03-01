@@ -17,10 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from grasp import views
+from debug_toolbar.toolbar import debug_toolbar_urls
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('books/', include('books.urls', namespace='books')),
     path('', views.index, name='index'),
-    path('__debug__/', include('debug_toolbar.urls')),
 ]
+
+if not settings.TESTING:
+    from debug_toolbar.toolbar import debug_toolbar_urls
+
+    urlpatterns = [
+        *urlpatterns,
+    ] + debug_toolbar_urls()
