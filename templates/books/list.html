@@ -45,7 +45,9 @@
                 {% endif %}
             </div>            
             <div class="col-span-1">
-                <form method="GET">
+                <form hx-get="{% url 'book-list' %}"
+                    hx-target="#book-container"
+                    hx-swap="outerHTML">
                     <div class="mb-2 form-control">
                         {{ filter.form.book_status|add_label_class:"label" }}
                         {% render_field filter.form.book_status class="select" %}
