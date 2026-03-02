@@ -40,6 +40,8 @@ class Book(models.Model):
         choices=Status
     )
     languages = models.ManyToManyField("BookLanguage", blank=True, null=True)
+    isbn = models.IntegerField(max_length=13, blank=True, null=True)
+    # Add validation as described in Wikipedia: https://en.wikipedia.org/wiki/ISBN
 
     objects = models.Manager()
     read = BookReadManager()
