@@ -67,8 +67,13 @@ class Author(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
+    @property
+    def full_name(self):
+        "Returns the author's full name"
         return f"{self.first_name} {self.last_name}"
+
+    def __str__(self):
+        return self.full_name
 
 
 class Publication(models.Model):
