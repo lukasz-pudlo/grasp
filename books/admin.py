@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Book, Author, Publication, PublishingHouse
+from .models import Book, Author, Publication, PublishingHouse, BookLanguage
 
 
 @admin.register(Book)
@@ -39,4 +39,11 @@ class PublishingHouseAdmin(admin.ModelAdmin):
     list_filter = ['name']
     search_fields = ['name', 'country']
     ordering = ['name']
+    show_facets = admin.ShowFacets.ALWAYS
+
+
+@admin.register(BookLanguage)
+class BookLanguageAdmin(admin.ModelAdmin):
+    list_display = ["name", "language_tag"]
+    search_fields = ["name", "language_tag"]
     show_facets = admin.ShowFacets.ALWAYS

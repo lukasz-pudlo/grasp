@@ -39,6 +39,7 @@ class Book(models.Model):
         max_length=2,
         choices=Status
     )
+    languages = models.ManyToManyField("BookLanguage", blank=True, null=True)
 
     objects = models.Manager()
     read = BookReadManager()
@@ -125,6 +126,24 @@ class PublishingHouse(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     from_country = PublishingHouseQuerySet.as_manager()
+
+    def __str__(self):
+        return self.name
+
+
+class BookLanguage(models.Model):
+    name = models.CharField(max_length=255, unique=True, blank=False)
+    language_sub_tag = models.CharField(max_length=2, blank=True)
+    country_sub_tag = models.CharField(max_length=2, blank=True)
+
+    @property
+    def language_tag(self):
+        "Returns the full language tag as defined by IETF"
+        return f"{self.language_sub_tag}-{self.country_sub_tag}"
+
+    # Explore the standards: https://www.rfc-editor.org/rfc/rfc5646
+    # Country codes: https://www.iso.org/obp/ui/#iso:pub:PUB500001:en
+    # Add choices to language and country sub tags
 
     def __str__(self):
         return self.name
