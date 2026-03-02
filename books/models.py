@@ -67,6 +67,9 @@ class Author(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        unique_together = [["first_name", "last_name"]]
+
     @property
     def full_name(self):
         "Returns the author's full name"
