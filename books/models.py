@@ -58,8 +58,11 @@ class Book(models.Model):
             args=[self.id]
         )
 
-    def get_all_authors(self):
+    def get_authors(self):
         return ", ".join([f"{author.first_name} {author.last_name}" for author in self.authors.all()])
+
+    def get_languages(self):
+        return ", ".join([f"{booklanguage.name}" for booklanguage in self.languages.all()])
 
 
 class Author(models.Model):
