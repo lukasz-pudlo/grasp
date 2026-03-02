@@ -57,6 +57,9 @@ class Book(models.Model):
             args=[self.id]
         )
 
+    def get_all_authors(self):
+        return ", ".join([f"{author.first_name} {author.last_name}" for author in self.authors.all()])
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=255)

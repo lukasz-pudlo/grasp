@@ -8,7 +8,7 @@
                 <thead class="text-xs uppercase">
                     <tr>
                         <th class="px-6 py-3">Title</th>
-                        <th class="px-6 py-3">Author</th>
+                        <th class="px-6 py-3">Author(s)</th>
                         <th class="px-6 py-3">Edition</th>
                         <th class="px-6 py-3">Status</th>
                     </tr>
@@ -19,9 +19,7 @@
                         <tr>
                             <td>{{ book.title }}</td>
                             <td>
-                                {% for publication in book.publication_set.all %}
-                                    {{ publication.author }}, 
-                                {% endfor %}
+                                {{ book.get_all_authors }}
                             </td>
                             <td>{{ book.edition }}</td>
                             <td>{{ book.status }}</td>
