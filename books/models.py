@@ -146,4 +146,4 @@ class BookLanguage(models.Model):
     # Add choices to language and country sub tags
 
     def __str__(self):
-        return self.name
+        return self.language_tag
