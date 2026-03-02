@@ -8,6 +8,9 @@ django = "*"
 django-filter = "*"
 django-htmx = "*"
 django-widget-tweaks = "*"
+pytest = "*"
+pytest-django = "*"
+factory-boy = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
