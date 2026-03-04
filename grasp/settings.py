@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_filters',
     'widget_tweaks',
     'django_htmx',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -57,18 +58,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_htmx.middleware.HtmxMiddleware",
 ]
-
-TESTING = "test" in sys.argv or "PYTEST_VERSION" in os.environ
-
-if not TESTING:
-    INSTALLED_APPS = [
-        *INSTALLED_APPS,
-        "debug_toolbar",
-    ]
-    MIDDLEWARE = [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
-        *MIDDLEWARE,
-    ]
 
 ROOT_URLCONF = 'grasp.urls'
 

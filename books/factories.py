@@ -1,6 +1,7 @@
 from datetime import datetime
 import factory
-from books.models import Book, Author, Publication, PublishingHouse, User
+from books.models import Book, Author, Publication, PublishingHouse
+from django.contrib.auth.models import User
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -47,9 +48,9 @@ class BookFactory(factory.django.DjangoModelFactory):
 
 class PublishingHouseFactory(factory.django.DjangoModelFactory):
     class Meta:
-        user = PublishingHouse
+        model = PublishingHouse
 
-    country = factory.Iterator(["PL", "UK", "DE", "FR"])
+    country = factory.Iterator(["PL", "UK"])
     name = factory.Faker("company")
     address = factory.Faker("address")
     established = factory.Faker(
@@ -61,7 +62,7 @@ class PublishingHouseFactory(factory.django.DjangoModelFactory):
 
 class PublicationFactory(factory.django.DjangoModelFactory):
     class Meta:
-        user = Publication
+        model = Publication
 
     author = factory.SubFactory(AuthorFactory)
     book = factory.SubFactory(BookFactory)
