@@ -23,7 +23,7 @@
                                 {{ book.get_authors }}
                             </td>
                             <td>{{ book.edition }}</td>
-                            <td>{{ book.status }}</td>
+                            <td>{{ book.get_status_display }}</td>
                             <td>{{ book.get_languages }}</td>
                         </tr>
                     {% endfor %}
