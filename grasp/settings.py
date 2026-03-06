@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_filters',
     'widget_tweaks',
     'django_htmx',
+    'django.contrib.humanize',
 ]
 
 
