@@ -1,6 +1,5 @@
 import pytest
-from django.urls import reverse
-from books.models import PublishingHouse
+from books.models import PublishingHouse, Book
 
 
 @pytest.mark.django_db
@@ -23,8 +22,9 @@ def test_queryset_uk_method(publishing_houses):
 
 @pytest.mark.django_db
 def test_book_read_manager(user_books, client):
-    user = user_books[0].reader
-    client.force_login(user)
+    qs = Book.read.all()
 
-    response = client.get(reverse('books:book-list'))
-    print(response)
+    assert qs.count() > 0
+    assert all(
+        [book.status == "RD" for book in qs]
+    )
