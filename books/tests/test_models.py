@@ -1,4 +1,5 @@
 import pytest
+from django.urls import reverse
 from books.models import PublishingHouse
 
 
@@ -18,3 +19,12 @@ def test_queryset_uk_method(publishing_houses):
     assert all(
         [publishing_house.country == "UK" for publishing_house in qs]
     )
+
+
+@pytest.mark.django_db
+def test_book_read_manager(user_books, client):
+    user = user_books[0].reader
+    client.force_login(user)
+
+    response = client.get(reverse('books:book-list'))
+    print(response)
