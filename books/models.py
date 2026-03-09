@@ -84,6 +84,9 @@ class Author(models.Model):
     def __str__(self):
         return self.full_name
 
+    # This Project Gutenberg API might prove useful:
+    # https://gutendex.com/?ref=dr-pa&utm_medium=public-apis-website
+
 
 class Publication(models.Model):
     author = models.ForeignKey(
