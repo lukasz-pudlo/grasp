@@ -30,12 +30,10 @@ class BookFactory(factory.django.DjangoModelFactory):
     title = factory.Faker("catch_phrase")
     edition = factory.Faker("random_digit_not_null")
     reader = factory.SubFactory(UserFactory)
-    status = factory.Faker(
-        "random_element",
-        elements=[
-            x[0] for x in Book.Status
-        ]
+    status = factory.Iterator(
+        ["RM", "ST", "RD", "AD", "RR"]
     )
+
     isbn = factory.Faker("random_number", digits=13)
 
     @factory.post_generation
