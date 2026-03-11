@@ -25,9 +25,10 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
-    list_display = ['author', 'book', 'publisher', 'created', 'updated']
-    list_filter = ['author', 'book', 'publisher']
-    search_fields = ['author', 'book', 'publisher']
+    list_display = ['author', 'book',
+                    'publisher', 'date', 'created', 'updated']
+    list_filter = ['author', 'book', 'publisher', 'date']
+    search_fields = ['author', 'book', 'publisher', 'date']
     ordering = ['author']
     show_facets = admin.ShowFacets.ALWAYS
 

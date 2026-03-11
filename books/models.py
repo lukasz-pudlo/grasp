@@ -99,6 +99,7 @@ class Publication(models.Model):
                                   on_delete=models.CASCADE,
                                   related_name='publications'
                                   )
+    date = models.DateField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
