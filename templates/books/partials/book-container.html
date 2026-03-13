@@ -10,6 +10,7 @@
                         <th class="px-6 py-3">Title</th>
                         <th class="px-6 py-3">Author(s)</th>
                         <th class="px-6 py-3">Edition</th>
+                        <th class="px-6 py-3">Publication Date</th>
                         <th class="px-6 py-3">Status</th>
                         <th class="px-6 py-3">Language(s)</th>
                     </tr>
@@ -23,6 +24,7 @@
                                 {{ book.get_authors }}
                             </td>
                             <td>{{ book.edition }}</td>
+                            <td>{{ book.publications.first.date }}</td>
                             <td>{{ book.get_status_display }}</td>
                             <td>{{ book.get_languages }}</td>
                         </tr>

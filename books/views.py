@@ -10,7 +10,7 @@ def book_list(request):
     book_filter = BookFilter(
         request.GET,
         queryset=Book.objects.filter(
-            reader=request.user).prefetch_related("authors", "languages")
+            reader=request.user).prefetch_related("authors", "languages", "publications")
     )
 
     if request.htmx:
