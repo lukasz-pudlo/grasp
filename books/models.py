@@ -114,10 +114,10 @@ class Publication(models.Model):
 
 class PublishingHouseQuerySet(models.QuerySet):
     def poland(self):
-        return self.filter(country='PL')
+        return self.filter(country='Poland')
 
     def uk(self):
-        return self.filter(country='UK')
+        return self.filter(country='United Kingdom')
 
 
 class Country(models.Model):
