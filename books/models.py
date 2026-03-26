@@ -120,16 +120,23 @@ class PublishingHouseQuerySet(models.QuerySet):
         return self.filter(country='UK')
 
 
-class PublishingHouse(models.Model):
-    class Country(models.TextChoices):
-        POLAND = 'PL', 'Poland',
-        UNITED_KINGDOM = 'UK', 'United Kingdom',
+class Country(models.Model):
+    name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Countries"
+
+
+class PublishingHouse(models.Model):
     name = models.CharField(max_length=255)
     address = models.CharField(blank=True)
-    country = models.CharField(
-        max_length=2,
-        choices=Country
+    country = models.OneToOneField(
+        Country,
+        on_delete=models.CASCADE,
+        null=True
     )
     established = models.DateField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -143,8 +150,10 @@ class PublishingHouse(models.Model):
 
 class BookLanguage(models.Model):
     name = models.CharField(max_length=255, unique=True, blank=False)
-    language_sub_tag = models.CharField(max_length=2, blank=True)
-    country_sub_tag = models.CharField(max_length=2, blank=True)
+    language_sub_tag = models.CharField(
+        max_length=2, blank=True)  # For example "de" for German
+    country_sub_tag = models.CharField(
+        max_length=2, blank=True)  # For example "DE" for Germany
 
     @property
     def language_tag(self):
@@ -155,5 +164,6 @@ class BookLanguage(models.Model):
     # Country codes: https://www.iso.org/obp/ui/#iso:pub:PUB500001:en
     # Add choices to language and country sub tags
 
+    # For example "de-DE" (German for Germany) or "en-US" (English as used in the United States)
     def __str__(self):
         return self.language_tag
