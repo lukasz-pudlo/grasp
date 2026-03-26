@@ -7,7 +7,7 @@ def test_queryset_poland_method(publishing_houses):
     qs = PublishingHouse.from_country.poland()
     assert qs.count() > 0
     assert all(
-        [publishing_house.country == "PL" for publishing_house in qs]
+        [publishing_house.country == "Poland" for publishing_house in qs]
     )
 
 
@@ -16,7 +16,7 @@ def test_queryset_uk_method(publishing_houses):
     qs = PublishingHouse.from_country.uk()
     assert qs.count() > 0
     assert all(
-        [publishing_house.country == "UK" for publishing_house in qs]
+        [publishing_house.country == "United Kingdom" for publishing_house in qs]
     )
 
 
