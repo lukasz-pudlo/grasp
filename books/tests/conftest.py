@@ -1,5 +1,5 @@
 import pytest
-from books.factories import PublishingHouseFactory, BookFactory, UserFactory
+from books.factories import PublishingHouseFactory, BookFactory, UserFactory, CountryFactory
 
 
 @pytest.fixture

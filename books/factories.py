@@ -1,7 +1,10 @@
 from datetime import datetime
 import factory
-from books.models import Book, Author, Publication, PublishingHouse
+from books.models import Book, Author, Publication, PublishingHouse, Country
 from django.contrib.auth.models import User
+import faker
+
+fake = faker.Faker()
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -44,11 +47,18 @@ class BookFactory(factory.django.DjangoModelFactory):
         self.languages.add(*extracted)
 
 
+class CountryFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Country
+
+    name = fake.unique.country()
+
+
 class PublishingHouseFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = PublishingHouse
 
-    country = factory.Iterator(["PL", "UK"])
+    country = factory.SubFactory(CountryFactory)
     name = factory.Faker("company")
     address = factory.Faker("address")
     established = factory.Faker(
@@ -71,3 +81,5 @@ class BookLanguageFactory(factory.django.DjangoModelFactory):
     name = factory.Iterator(
         ["British English", "American English", "Spanish (Spain)", "French (France)"])
     # How to make the tag correspond to the name, e.g. en-GB for British English?
+
+# Create CountryFactory and refactor tests to work with Country as separate model

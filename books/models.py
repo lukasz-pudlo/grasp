@@ -114,14 +114,18 @@ class Publication(models.Model):
 
 class PublishingHouseQuerySet(models.QuerySet):
     def poland(self):
-        return self.filter(country='Poland')
+        poland_country = Country.objects.get(name="Poland")
+        if poland_country:
+            return self.filter(country=poland_country)
 
     def uk(self):
-        return self.filter(country='United Kingdom')
+        uk_country = Country.objects.get(name="United Kingdom")
+        if uk_country:
+            return self.filter(country=uk_country)
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
