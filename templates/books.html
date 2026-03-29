@@ -16,9 +16,9 @@
 {% endblock %}
 
 {% partialdef book-container %}
-    <div class="flex flex-col-reverse md:grid md:grid-cols-4 md:gap-32"
+    <div class="flex flex-col-reverse md:grid md:grid-cols-4 md:gap-7"
         id="book-container">
-        <div class="col-span-3">
+        <div class="col-span-3 overflow-x-scroll">
             {% if filter.qs %}
                 <table class="table">
                     <thead class="text-xs uppercase">
@@ -29,21 +29,13 @@
                             <th class="px-6 py-3">Publication Date</th>
                             <th class="px-6 py-3">Status</th>
                             <th class="px-6 py-3">Language(s)</th>
+                            <th></th>
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody hx-target="closest tr" hx-swap="outerHTML">
                         {% for book in filter.qs %}
-                            <tr>
-                                <td><a href="{% url 'books:book-detail' book.id %}">{{ book.title }}</a></td>
-                                <td>
-                                    {{ book.get_authors }}
-                                </td>
-                                <td>{{ book.edition }}</td>
-                                <td>{{ book.publications.first.date }}</td>
-                                <td>{{ book.get_status_display }}</td>
-                                <td>{{ book.get_languages }}</td>
-                            </tr>
+                            {% partial book-row %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -68,3 +60,60 @@
         </div>
     </div>
 {% endpartialdef book-container %}
+
+
+{% partialdef book-row %}
+    <tr>
+        <td><a href="{% url 'books:book-detail' book.pk %}">{{ book.title }}</a></td>
+        <td>
+            {{ book.get_authors }}
+        </td>
+        <td>{{ book.edition }}</td>
+        <td>{{ book.publications.first.date }}</td>
+        <td>{{ book.get_status_display }}</td>
+        <td>{{ book.get_languages }}</td>
+        <td>
+            <button class="btn btn-primary btn-sm" 
+            hx-get="{% url 'books:book-edit' book.pk %}"
+            hx-target="closest tr"
+            hx-swap="outerHTML"
+            >
+                Edit
+            </button>
+        </td>
+    </tr>
+{% endpartialdef book-row %}
+
+{% partialdef book-edit %}
+    <tr>
+        <td>
+            <a href="{% url 'books:book-detail' book.pk %}">{{ book.title }}</a>
+        </td>
+        <td>
+            {{ book.get_authors }}
+        </td>
+        <td>{{ book.edition }}</td>
+        <td>{{ book.publications.first.date }}</td>
+        <td>
+            {{ form.status }}
+            {{ form.status.errors }}
+        </td>
+        <td>{{ book.get_languages }}</td>
+        <td>
+            <button class="btn btn-primary btn-sm" 
+                    hx-post="{% url 'books:book-edit-submit' book.pk %}" 
+                    hx-target="closest tr" hx-swap="outerHTML" 
+                    hx-include="closest tr" class="text-secondary">
+                    Save
+            </button>
+        </td>
+        <td>
+            <button class="btn btn-primary btn-sm" 
+                    hx-get="{% url 'books:book-edit-submit' book.pk %}" 
+                    hx-target="closest tr" hx-swap="outerHTML" 
+                    hx-include="closest tr" class="text-secondary">
+                    Cancel
+            </button>        
+        </td>
+    </tr>
+{% endpartialdef book-edit %}

@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
-from .models import Book
-from .filters import BookFilter
+from books.models import Book
+from books.filters import BookFilter
+from books.forms import BookForm
 
 
 @login_required
@@ -23,10 +24,10 @@ def book_list(request):
 
 
 @login_required
-def book_detail(request, id):
+def book_detail(request, pk):
     book = get_object_or_404(
         Book,
-        id=id,
+        pk=pk,
         reader=request.user
     )
 
@@ -35,3 +36,44 @@ def book_detail(request, id):
         "book_detail.html",
         {"book": book}
     )
+
+
+@login_required
+def book_edit(request, pk):
+    book = get_object_or_404(
+        Book,
+        pk=pk,
+        reader=request.user
+    )
+    form = BookForm(instance=book)
+
+    context = {
+        "book": book,
+        "form": form
+    }
+
+    return render(
+        request,
+        "books.html#book-edit",
+        context
+    )
+
+
+def book_edit_submit(request, pk):
+    book = get_object_or_404(
+        Book,
+        pk=pk,
+        reader=request.user
+    )
+
+    context = {
+        "book": book
+    }
+
+    if request.method == "POST":
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+        else:
+            return render(request, "books.html#book-edit", context)
+    return render(request, "books.html#book-row", context)
