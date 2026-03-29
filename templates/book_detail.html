@@ -1,9 +1,13 @@
 {% extends "base.html" %} {% block title %}{{ book.title }}{% endblock %}
 {% block content %}
 <header>
-    <h1>{{ book.title }}</h1>
+    <h1 class="mt-4 mb-6 text-2xl leading-none tracking-tight md:text-3xl lg:text-4xl">
+        {{ book.title }}
+    </h1>
 </header>
 <main>
-    <p class="status">The status of the books is: {{ book.status }}.</p>
+    <p class="text-xl">
+        The status of the books is: {{ book.status }}.
+    </p>
 </main>
 {% endblock %}
