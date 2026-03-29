@@ -2,3 +2,4 @@
 node_modules
 *.pyc
 static/css/tailwind.css
+db.sqlite3
