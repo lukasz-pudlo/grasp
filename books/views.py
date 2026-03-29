@@ -14,10 +14,10 @@ def book_list(request):
     )
 
     if request.htmx:
-        return render(request, "books/partials/book-container.html", {"filter": book_filter})
+        return render(request, "books.html#book-container", {"filter": book_filter})
     return render(
         request,
-        "books/list.html",
+        "books.html",
         {"filter": book_filter}
     )
 
@@ -32,6 +32,6 @@ def book_detail(request, id):
 
     return render(
         request,
-        "books/detail.html",
+        "books.html#book-detail",
         {"book": book}
     )
