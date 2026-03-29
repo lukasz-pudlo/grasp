@@ -32,6 +32,6 @@ def book_detail(request, id):
 
     return render(
         request,
-        "books.html#book-detail",
+        "book_detail.html",
         {"book": book}
     )
