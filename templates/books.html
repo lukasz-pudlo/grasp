@@ -35,7 +35,7 @@
                     <tbody>
                         {% for book in filter.qs %}
                             <tr>
-                                <td>{{ book.title }}</td>
+                                <td><a href="{% url 'books:book-detail' book.id %}">{{ book.title }}</a></td>
                                 <td>
                                     {{ book.get_authors }}
                                 </td>
@@ -68,12 +68,3 @@
         </div>
     </div>
 {% endpartialdef book-container %}
-
-{% partialdef book-detail %}
-    <header>
-        <h1>{{ book.title }}</h1>
-    </header>
-    <main>
-        <p class="status">The status of the books is: {{ book.status }}.</p>
-    </main>
-{% endpartialdef book-detail %}
