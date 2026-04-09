@@ -5,20 +5,20 @@
     Books
 {% endblock %}
 {% block content %}
-    <h1 class="mt-4 mb-6 prose leading-none tracking-tight md:text-3xl lg:text-4xl flex items-center">
-        Books
-    </h1>
-
-    <button class="btn btn-primary"
-            hx-get="{% url 'books:book-add' %}"
-            hx-target="next tbody"
-            hx-swap="afterbegin"
-    >
-        Add Book
-    </button>
-
-    <div class="relative overflow-x-auto">
-        {% partial book-container %}
+    <div class="grid grid-cols-1 gap-4">
+        <div>
+            <button class="btn btn-primary"
+                    hx-get="{% url 'books:book-add' %}"
+                    hx-target="next tbody"
+                    hx-swap="afterbegin"
+            >
+                Add Book
+            </button>
+        </div>
+        
+        <div class="relative overflow-x-auto">
+            {% partial book-container %}
+        </div>
     </div>
 
 {% endblock %}
