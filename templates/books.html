@@ -9,12 +9,67 @@
         Books
     </h1>
 
+    <button class="btn btn-primary"
+            hx-get="{% url 'books:book-add' %}"
+            hx-target="next tbody"
+            hx-swap="afterbegin"
+    >
+        Add Book
+    </button>
+
     <div class="relative overflow-x-auto">
         {% partial book-container %}
     </div>
 
 {% endblock %}
 
+{% partialdef book-add %}
+    <tr>
+        <td>
+            {{ form.title }}
+            {{ form.title.errors }}
+        </td>
+        <td>
+            How to add authors?
+        </td>
+        <td>
+            {{ form.edition }}
+            {{ form.edition.errors }}
+        </td>
+        <td>
+            How to add publication date?
+        </td>
+        <td>
+            {{ form.status }}
+            {{ form.status.errors }}
+        </td>
+        <td>
+            {{ form.languages }}
+            {{ form.languages.errors }}
+        </td>
+        <td>
+            <button class="btn btn-primary btn-sm"
+                hx-post="{% url 'books:book-add-submit' %}" 
+                hx-target="closest tr" 
+                hx-swap="outerHTML" 
+                hx-include="closest tr" 
+            >
+                Add
+            </button>
+        </td>
+            <td>
+                <button class="btn btn-primary btn-sm"
+                    hx-get="{% url 'books:book-add-cancel' %}" 
+                    hx-target="closest tr" 
+                    hx-swap="outerHTML"
+                >
+                    Cancel
+                </button>
+            </td>
+    </tr>
+{% endpartialdef book-add %}
+
+<!-- The filtered results are fed into the book-container partial -->
 {% partialdef book-container %}
     <div class="flex flex-col-reverse md:grid md:grid-cols-4 md:gap-7"
         id="book-container">
@@ -61,7 +116,7 @@
     </div>
 {% endpartialdef book-container %}
 
-
+<!-- The book-row partial is used to in-line edit books -->
 {% partialdef book-row %}
     <tr>
         <td><a href="{% url 'books:book-detail' book.pk %}">{{ book.title }}</a></td>

@@ -1,9 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
 from books.models import Book
 from books.filters import BookFilter
-from books.forms import BookForm
+from books.forms import BookForm, BookAddForm
 
 
 @login_required
@@ -77,3 +78,29 @@ def book_edit_submit(request, pk):
         else:
             return render(request, "books.html#book-edit", context)
     return render(request, "books.html#book-row", context)
+
+
+def book_add(request):
+    context = {
+        "form": BookAddForm()
+    }
+
+    return render(request, "books.html#book-add", context)
+
+
+def book_add_submit(request):
+    context = {}
+    form = BookAddForm(request.POST)
+    context["form"] = form
+    if form.is_valid():
+        book = form.save(commit=False)
+        user = request.user
+        book.reader = user
+        context["book"] = form.save()
+    else:
+        return render(request, "books.html#book-add", context)
+    return render(request, "books.html#book-row", context)
+
+
+def book_add_cancel(request):
+    return HttpResponse()
