@@ -142,12 +142,16 @@
 {% partialdef book-edit %}
     <tr>
         <td>
-            <a href="{% url 'books:book-detail' book.pk %}">{{ book.title }}</a>
+            {{ form.title }}
+            {{ form.title.errors }}
         </td>
         <td>
             {{ book.get_authors }}
         </td>
-        <td>{{ book.edition }}</td>
+        <td>
+            {{ form.edition }}
+            {{ form.edition.errors }}
+        </td>
         <td>{{ book.publications.first.date }}</td>
         <td>
             {{ form.status }}
