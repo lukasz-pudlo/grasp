@@ -123,20 +123,22 @@
             {{ form.status.errors }}
         </td>
         <td>
-            <button class="btn btn-primary btn-sm" 
-                    hx-post="{% url 'books:book-edit-submit' book.pk %}" 
-                    hx-target="closest tr" hx-swap="outerHTML" 
-                    hx-include="closest tr" class="text-secondary">
-                    Save
-            </button>
-        </td>
-        <td>
-            <button class="btn btn-primary btn-sm" 
-                    hx-get="{% url 'books:book-edit-submit' book.pk %}" 
-                    hx-target="closest tr" hx-swap="outerHTML" 
-                    hx-include="closest tr" class="text-secondary">
-                    Cancel
-            </button>        
+        <div class="inline-flex" role="group">
+                <button class="btn btn-primary btn-sm inline-flex items-center" 
+                        hx-post="{% url 'books:book-edit-submit' book.pk %}" 
+                        hx-target="closest tr" hx-swap="outerHTML" 
+                        hx-include="closest tr" class="text-secondary">
+                        Save
+                </button>
+
+                <button class="btn btn-primary btn-sm inline-flex items-center" 
+                        hx-get="{% url 'books:book-edit-submit' book.pk %}" 
+                        hx-target="closest tr" hx-swap="outerHTML" 
+                        hx-include="closest tr" class="text-secondary">
+                        Cancel
+                </button>        
+            
+        </div>
         </td>
     </tr>
 {% endpartialdef book-edit %}
