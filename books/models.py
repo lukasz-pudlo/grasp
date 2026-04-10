@@ -67,6 +67,14 @@ class Book(models.Model):
         return ", ".join([f"{booklanguage.name}" for booklanguage in self.languages.all()])
 
 
+class TextFragment(models.Model):
+    book = models.ForeignKey(
+        Book, on_delete=models.CASCADE, related_name="text_fragments")
+    text = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+
 class Author(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -74,7 +82,7 @@ class Author(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = [["first_name", "last_name"]]
+        unique_together = ["first_name", "last_name"]
 
     @property
     def full_name(self):
