@@ -7,7 +7,7 @@
 {% block content %}
     <div class="grid grid-cols-1 gap-4">
         <div>
-            <button class="btn btn-primary"
+            <button class="btn btn-primary bg-reclam-yellow text-black border-0"
                     hx-get="{% url 'books:book-add' %}"
                     hx-target="next tbody"
                     hx-swap="afterbegin"
@@ -37,24 +37,24 @@
             {{ form.status.errors }}
         </td>
         <td>
-            <button class="btn btn-primary btn-sm"
-                hx-post="{% url 'books:book-add-submit' %}" 
-                hx-target="closest tr" 
-                hx-swap="outerHTML" 
-                hx-include="closest tr" 
-            >
-                Add
-            </button>
-        </td>
-            <td>
-                <button class="btn btn-primary btn-sm"
+            <div class="inline-flex" role="group">
+                <button class="btn btn-primary btn-sm inline-flex items-center bg-reclam-green mr-1"
+                    hx-post="{% url 'books:book-add-submit' %}" 
+                    hx-target="closest tr" 
+                    hx-swap="outerHTML" 
+                    hx-include="closest tr" 
+                >
+                    Save
+                </button>
+                <button class="btn btn-primary btn-sm inline-flex items-center bg-reclam-orange text-black"
                     hx-get="{% url 'books:book-add-cancel' %}" 
                     hx-target="closest tr" 
                     hx-swap="outerHTML"
                 >
                     Cancel
                 </button>
-            </td>
+            </div>
+        </td>
     </tr>
 {% endpartialdef book-add %}
 
@@ -98,7 +98,7 @@
         </td>
         <td>{{ book.get_status_display }}</td>
         <td>
-            <button class="btn btn-primary btn-sm" 
+            <button class="btn btn-primary btn-sm bg-reclam-yellow text-black" 
             hx-get="{% url 'books:book-edit' book.pk %}"
             hx-target="closest tr"
             hx-swap="outerHTML"
@@ -123,22 +123,22 @@
             {{ form.status.errors }}
         </td>
         <td>
-        <div class="inline-flex" role="group">
-                <button class="btn btn-primary btn-sm inline-flex items-center" 
-                        hx-post="{% url 'books:book-edit-submit' book.pk %}" 
-                        hx-target="closest tr" hx-swap="outerHTML" 
-                        hx-include="closest tr" class="text-secondary">
-                        Save
-                </button>
+            <div class="inline-flex" role="group">
+                    <button class="btn btn-primary btn-sm inline-flex items-center bg-reclam-green mr-1" 
+                            hx-post="{% url 'books:book-edit-submit' book.pk %}" 
+                            hx-target="closest tr" hx-swap="outerHTML" 
+                            hx-include="closest tr" class="text-secondary">
+                            Save
+                    </button>
 
-                <button class="btn btn-primary btn-sm inline-flex items-center" 
-                        hx-get="{% url 'books:book-edit-submit' book.pk %}" 
-                        hx-target="closest tr" hx-swap="outerHTML" 
-                        hx-include="closest tr" class="text-secondary">
-                        Cancel
-                </button>        
-            
-        </div>
+                    <button class="btn btn-primary btn-sm inline-flex items-center bg-reclam-orange text-black" 
+                            hx-get="{% url 'books:book-edit-submit' book.pk %}" 
+                            hx-target="closest tr" hx-swap="outerHTML" 
+                            hx-include="closest tr" class="text-secondary">
+                            Cancel
+                    </button>        
+                
+            </div>
         </td>
     </tr>
 {% endpartialdef book-edit %}

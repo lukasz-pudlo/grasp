@@ -13,9 +13,9 @@
   </head>
   <!-- This should be enough to make POST calls -->
   <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-    <div class="navbar bg-base-100 shadow-sm bg-reclam-yellow">
-      <a href="{% url 'index' %}" class="btn btn-ghost text-xl">Home</a>
-      <a href="{% url 'books:book-list' %}" class="btn btn-ghost text-xl">Books</a>
+    <div class="navbar bg-base-100 shadow-sm bg-reclam-yellow border-0">
+      <a href="{% url 'index' %}" class="btn btn-neutral text-xl mr-1">Home</a>
+      <a href="{% url 'books:book-list' %}" class="btn btn-neutral text-xl">Books</a>
     </div>
     <div class="max-w-5xl mx-auto p-4 m-10">
       {% block content %} {% endblock %}
