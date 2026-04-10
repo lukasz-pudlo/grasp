@@ -13,7 +13,7 @@
   </head>
   <!-- This should be enough to make POST calls -->
   <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-    <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar bg-base-100 shadow-sm sticky top-0">
       <a href="{% url 'index' %}" class="btn btn-ghost text-xl">Home</a>
       <a href="{% url 'books:book-list' %}" class="btn btn-ghost text-xl">Books</a>
     </div>
