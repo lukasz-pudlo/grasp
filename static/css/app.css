@@ -16,3 +16,25 @@
 @utility btn {
     @apply border-0 shadow-none;
 }
+
+@font-face {
+    font-family: "DocumentaTRegular";
+    src:
+        local("DocumentaTRegular"),
+        url("fonts/dtl-documenta-t-regular") format("opentype");
+}
+
+
+@font-face {
+    font-family: "DocumentaSTRegular";
+    src:
+        local("DocumentaSTRegular"),
+        url("fonts/dtl-documenta-st-regular") format("opentype");
+}
+
+@font-face {
+    font-family: "DocumentaTEuro";
+    src:
+        local("DocumentaTEuro"),
+        url("fonts/dtl-documenta-t-euro") format("opentype");
+}
