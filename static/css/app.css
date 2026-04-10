@@ -12,3 +12,7 @@
     --color-reclam-white: #ffffff;
     --color-reclam-yellow: #fee202;
 }
+
+@utility btn {
+    @apply border-0 shadow-none;
+}
