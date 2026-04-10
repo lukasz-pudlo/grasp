@@ -1,3 +1,14 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
+
+@theme {
+    --color-reclam-blue: #01b5d5;
+    --color-reclam-green: #01b5d5;
+    --color-reclam-orange: #f69601;
+    --color-reclam-pink: #01b5d5;
+    --color-reclam-red: #e83b2a;
+    --color-reclam-topaz: #29b6a6;
+    --color-reclam-white: #ffffff;
+    --color-reclam-yellow: #fee202;
+}
