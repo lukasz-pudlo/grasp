@@ -19,6 +19,13 @@
             </div>
         </div>
         <div class="row-span-15">
+            {% for fragment in text_fragments %}
+            <div class="mt-10 ml-10 mr-10">
+                <p>
+                    {{ fragment.text }}
+                </p>
+            </div>
+            {% endfor %}
         </div>
     </div>
 

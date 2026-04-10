@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
-from books.models import Book
+from books.models import Book, TextFragment
 from books.filters import BookFilter
 from books.forms import BookForm, BookAddForm
 
@@ -32,10 +32,15 @@ def book_detail(request, pk):
         reader=request.user
     )
 
+    text_fragments = TextFragment.objects.filter(book=book)
+
     return render(
         request,
         "book_detail.html",
-        {"book": book}
+        {
+            "book": book,
+            "text_fragments": text_fragments
+        }
     )
 
 
