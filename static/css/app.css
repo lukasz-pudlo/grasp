@@ -38,3 +38,10 @@
         local("DocumentaTEuro"),
         url("fonts/dtl-documenta-t-euro") format("opentype");
 }
+
+@font-face {
+    font-family: "DocumentaSansSTRegular";
+    src:
+        local("DocumentaSansSTRegular"),
+        url("fonts/dtl-documenta-sans-st-regular.otf") format("opentype");
+}
