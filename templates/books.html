@@ -92,7 +92,7 @@
 <!-- The book-row partial is used to in-line edit books -->
 {% partialdef book-row %}
     <tr>
-        <td><a href="{% url 'books:book-detail' book.pk %}">{{ book.title }}</a></td>
+        <td class="hover:bg-reclam-yellow"><a href="{% url 'books:book-detail' book.pk %}">{{ book.title }}</a></td>
         <td>
             {{ book.get_authors }}
         </td>
