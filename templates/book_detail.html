@@ -1,13 +1,32 @@
 {% extends "base.html" %} {% block title %}{{ book.title }}{% endblock %}
 {% block content %}
-<header>
-    <h1 class="mt-4 mb-6 text-2xl leading-none tracking-tight md:text-3xl lg:text-4xl">
-        {{ book.title }}
-    </h1>
-</header>
-<main>
-    <p class="text-xl">
-        The status of the books is: {{ book.status }}.
-    </p>
-</main>
+    <div class="grid grid-flow-col grid-rows-20 bg-reclam-yellow">
+        <div>
+
+        </div>
+
+        <div class="row-span-3">
+            <div class="grid grid-cols-10">
+                <div>
+
+                </div>
+                <div class="col-span-8 bg-reclam-white border-b-10">
+                    <h1 class="mt-4 text-2xl leading-none tracking-tight md:text-3xl lg:text-4xl ml-2">
+                        {{ book.title }}
+                    </h1>
+                    <p class="ml-2 mb-5">
+                        {{ book.get_authors }}
+                    </p>
+                <div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row-span-16">
+
+        </div>
+    </div>
+
 {% endblock %}
