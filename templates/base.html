@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html class="bg-white dark:bg-gray-800"" lang="en-gb">
+<html class="bg-white dark:bg-black"" lang="en-gb">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
   </head>
   <!-- This should be enough to make POST calls -->
   <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-    <div class="navbar bg-base-100 shadow-sm sticky top-0">
+    <div class="navbar bg-base-100 shadow-sm bg-reclam-yellow">
       <a href="{% url 'index' %}" class="btn btn-ghost text-xl">Home</a>
       <a href="{% url 'books:book-list' %}" class="btn btn-ghost text-xl">Books</a>
     </div>
