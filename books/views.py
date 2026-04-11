@@ -109,3 +109,18 @@ def book_add_submit(request):
 
 def book_add_cancel(request):
     return HttpResponse()
+
+
+def fragment_detail(request, pk):
+    fragment = get_object_or_404(
+        Fragment,
+        pk=pk
+    )
+
+    return render(
+        request,
+        "book_detail.html#fragment-detail",
+        {
+            "fragment": fragment
+        }
+    )

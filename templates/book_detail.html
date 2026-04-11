@@ -18,17 +18,30 @@
                 </div>
             </div>
         </div>
-        <div class="row-span-15">
+        <div id="fragment-detail-container" class="row-span-15 mt-20 ml-20 mr-20">
             {% for fragment in fragments %}
-
-            {% partial fragment-container %}
-
+                <div class="mb-5 text-balance text-lg hover:font-extrabold cursor-pointer"
+                     hx-get="{% url 'books:fragment-detail' fragment.pk %}"
+                     hx-target="#fragment-detail-container"
+                     hx-swap="outerHTML"
+                     hx-trigger="click">
+                    {{ fragment.text|truncatechars:50 }}
+                </div>
             {% endfor %}
         </div>
     </article>
 
 {% endblock %}
 
+{% partialdef fragment-detail %}
+    <div class="mt-20 ml-20 mr-20 text-balance">
+        <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular]">
+            {{ fragment.text }}
+        </p>
+    </div>
+{% endpartialdef fragment-detail %}
+
+<!-- To be removed once the transition from fragment detail to learning sequence has been decided -->
 {% partialdef fragment-container %}
     <div class="mt-20 ml-20 mr-20 text-balance">
         <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular]">

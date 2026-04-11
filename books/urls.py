@@ -11,4 +11,5 @@ urlpatterns = [
     path('add/cancel', views.book_add_cancel, name='book-add-cancel'),
     path('<int:pk>/edit', views.book_edit, name='book-edit'),
     path('<int:pk>/edit/submit', views.book_edit_submit, name='book-edit-submit'),
+    path('fragment/<int:pk>', views.fragment_detail, name="fragment-detail"),
 ]
