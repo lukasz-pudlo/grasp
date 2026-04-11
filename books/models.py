@@ -80,7 +80,6 @@ class Fragment(models.Model):
         super().save(**kwargs)
         sentences = nltk.tokenize.sent_tokenize(self.text, language="german")
         for sentence in sentences:
-            print(sentence)
             s = Sentence(fragment=self, text=sentence)
             s.save()
 
@@ -91,6 +90,13 @@ class Sentence(models.Model):
     text = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def save(self, **kwargs):
+        super().save(**kwargs)
+        words = nltk.word_tokenize(self.text)
+        for word in words:
+            w = Word(sentence=self, text=word)
+            w.save()
 
 
 class Word(models.Model):
