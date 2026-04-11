@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Book, Author, Publication, PublishingHouse, BookLanguage, Country, TextFragment
+from .models import Book, Author, Publication, \
+    PublishingHouse, BookLanguage, Country, Fragment, Sentence, Word
 
 
 @admin.register(Book)
@@ -57,8 +58,22 @@ class CountryAdmin(admin.ModelAdmin):
     show_facets = admin.ShowFacets.ALWAYS
 
 
-@admin.register(TextFragment)
-class TextFragmentAdmin(admin.ModelAdmin):
+@admin.register(Fragment)
+class FragmentAdmin(admin.ModelAdmin):
     list_display = ["book", "text", "created", "updated"]
     search_fields = ["book", "text"]
+    show_facets = admin.ShowFacets.ALWAYS
+
+
+@admin.register(Sentence)
+class SentenceAdmin(admin.ModelAdmin):
+    list_display = ["fragment", "text", "created", "updated"]
+    search_fields = ["fragment", "text"]
+    show_facets = admin.ShowFacets.ALWAYS
+
+
+@admin.register(Word)
+class WordAdmin(admin.ModelAdmin):
+    list_display = ["sentence", "text", "created", "updated"]
+    search_fields = ["sentence", "text"]
     show_facets = admin.ShowFacets.ALWAYS

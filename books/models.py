@@ -67,9 +67,25 @@ class Book(models.Model):
         return ", ".join([f"{booklanguage.name}" for booklanguage in self.languages.all()])
 
 
-class TextFragment(models.Model):
+class Fragment(models.Model):
     book = models.ForeignKey(
-        Book, on_delete=models.CASCADE, related_name="text_fragments")
+        Book, on_delete=models.CASCADE, related_name="fragments")
+    text = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+
+class Sentence(models.Model):
+    fragment = models.ForeignKey(
+        Fragment, on_delete=models.CASCADE, related_name="sentences")
+    text = models.TextField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+
+class Word(models.Model):
+    sentence = models.ForeignKey(
+        Sentence, on_delete=models.CASCADE, related_name="sentences")
     text = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
