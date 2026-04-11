@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import ordinal
 from django.urls import reverse
+import nltk
+nltk.download('punkt_tab')
 
 
 class BookReadManager(models.Manager):
@@ -73,6 +75,14 @@ class Fragment(models.Model):
     text = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def save(self, **kwargs):
+        super().save(**kwargs)
+        sentences = nltk.tokenize.sent_tokenize(self.text, language="german")
+        for sentence in sentences:
+            print(sentence)
+            s = Sentence(fragment=self, text=sentence)
+            s.save()
 
 
 class Sentence(models.Model):
