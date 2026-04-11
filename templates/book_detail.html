@@ -40,7 +40,10 @@
         </p>
     </div>
     <div class="flex justify-center">
-        <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black">
+        <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black"
+                hx-get="{% url 'books:book-detail' fragment.book.pk %}"
+                hx-target="closest body"
+                hx-swap="outerHTML">
             Back
         </button>
         <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black">
