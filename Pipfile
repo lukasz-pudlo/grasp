@@ -11,6 +11,7 @@ django-widget-tweaks = "*"
 pytest = "*"
 pytest-django = "*"
 factory-boy = "*"
+nltk = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
