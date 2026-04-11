@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}{{ book.title }}{% endblock %}
 {% block content %}
-    <div class="grid grid-flow-col grid-rows-20 bg-reclam-yellow h-screen overflow-y-scroll">
+    <article class="grid grid-flow-col grid-rows-20 bg-reclam-yellow h-screen overflow-y-scroll">
         <div>
         </div>
         <div class="row-span-4">
@@ -8,12 +8,12 @@
                 <div>
                 </div>
                 <div class="col-span-8 bg-reclam-white border-b-10">
-                    <p class="mt-4 text-4xl leading-none tracking-tight ml-2 font-[DocumentaSTRegular]">
+                    <h1 class="mt-4 text-4xl leading-none tracking-tight ml-2 font-[DocumentaSTRegular]">
                         {{ book.get_authors }}
-                    </p>
-                    <p class="mt-2 ml-2 mb-20 text-4xl leading-none tracking-tight font-[DocumentaSTRegular]">
+                    </h1>
+                    <h1 class="mt-2 ml-2 mb-20 text-4xl leading-none tracking-tight font-[DocumentaSTRegular]">
                         {{ book.title }}
-                    </p>
+                    </h1>
                 <div>
                 </div>
             </div>
@@ -21,12 +21,12 @@
         <div class="row-span-15">
             {% for fragment in text_fragments %}
             <div class="mt-20 ml-20 mr-20 text-balance">
-                <p class="font-[DocumentaSansSTRegular]">
+                <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular]">
                     {{ fragment.text }}
                 </p>
             </div>
             {% endfor %}
         </div>
-    </div>
+    </article>
 
 {% endblock %}
