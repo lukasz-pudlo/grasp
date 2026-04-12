@@ -14,4 +14,5 @@ urlpatterns = [
     path('fragment/<int:pk>', views.fragment_detail, name="fragment-detail"),
     path('fragment/<int:pk>/sentences',
          views.sentence_list, name='sentence-list'),
+    path('sentence/<int:pk>/words', views.word_list, name='word-list'),
 ]

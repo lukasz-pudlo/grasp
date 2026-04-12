@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
-from books.models import Book, Fragment, Sentence
+from books.models import Book, Fragment, Sentence, Word
 from books.filters import BookFilter
 from books.forms import BookForm, BookAddForm
 
@@ -138,5 +138,21 @@ def sentence_list(request, pk):
         {
             "sentences": sentences,
             "fragment": fragment
+        }
+    )
+
+
+def word_list(request, pk):
+    sentence = get_object_or_404(Sentence, pk=pk)
+    words = Word.objects.filter(
+        sentence=sentence
+    )
+
+    return render(
+        request,
+        "book_detail.html#word-list",
+        {
+            "sentence": sentence,
+            "words": words
         }
     )

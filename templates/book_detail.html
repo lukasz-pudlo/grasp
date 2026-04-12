@@ -61,7 +61,11 @@
     <div id="fragment-detail-container">
         <div class="mt-20 ml-20 mr-20 text-balance">
             {% for sentence in sentences %}
-                <p class="mb-10 text-lg/10 tracking-wide font-[DocumentaSansSTRegular]">
+                <p class="mb-10 text-lg/10 tracking-wide font-[DocumentaSansSTRegular]"
+                   hx-get="{%url 'books:word-list' sentence.pk %}"
+                   hx-target="#fragment-detail-container"
+                   hx-swap="outerHTML"
+                   hx-trigger="click">
                     {{ sentence.text }}
                 </p>
             {% endfor %}
@@ -76,3 +80,24 @@
         </div>
     </div>
 {% endpartialdef sentence-list %}
+
+{% partialdef word-list %}
+    <div id="fragment-detail-container">
+        <div class="mt-20 ml-20 mr-20 text-balance">
+            {% for word in words %}
+                <p class="mb-10 text-lg/10 tracking-wide font-[DocumentaSansSTRegular]">
+                    {{ word.text }}
+                </p>
+            {% endfor %}
+        </div>
+    
+        <div class="flex justify-center">
+            <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black"
+                    hx-get="{% url 'books:sentence-list' sentence.fragment.pk %}"
+                    hx-target="#fragment-detail-container"
+                    hx-swap="outerHTML">
+                Back
+            </button>
+        </div>
+    </div>
+{% endpartialdef word-list %}

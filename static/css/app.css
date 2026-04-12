@@ -21,7 +21,7 @@
     font-family: "DocumentaTRegular";
     src:
         local("DocumentaTRegular"),
-        url("fonts/dtl-documenta-t-regular") format("opentype");
+        url("fonts/dtl-documenta-t-regular.otf") format("opentype");
 }
 
 
@@ -29,14 +29,14 @@
     font-family: "DocumentaSTRegular";
     src:
         local("DocumentaSTRegular"),
-        url("fonts/dtl-documenta-st-regular") format("opentype");
+        url("fonts/dtl-documenta-st-regular.otf") format("opentype");
 }
 
 @font-face {
     font-family: "DocumentaTEuro";
     src:
         local("DocumentaTEuro"),
-        url("fonts/dtl-documenta-t-euro") format("opentype");
+        url("fonts/dtl-documenta-t-euro.otf") format("opentype");
 }
 
 @font-face {
