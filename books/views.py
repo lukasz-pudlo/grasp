@@ -1,3 +1,5 @@
+import random
+
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
@@ -154,5 +156,34 @@ def word_list(request, pk):
         {
             "sentence": sentence,
             "words": words
+        }
+    )
+
+
+def remove_random_letters(word, number):
+    index = random.randrange(len(word))
+    incomplete_word = ""
+    if int(number) > len(word):
+        word.replace(word, "")
+    else:
+        incomplete_word = word[:index] + word[index + int(number):]
+    return incomplete_word
+
+
+def learn_words(request, pk, round):
+    sentence = get_object_or_404(Sentence, pk=pk)
+    words = Word.objects.filter(sentence=sentence)
+    incomplete_words = []
+    for word in words:
+        incomplete_word = remove_random_letters(word.text, round)
+        incomplete_words.append(incomplete_word)
+
+    return render(
+        request,
+        "book_detail.html#learn_words",
+        {
+            "words": incomplete_words,
+            "sentence": sentence,
+            "round": int(round) + 1
         }
     )
