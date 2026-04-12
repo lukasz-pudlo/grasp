@@ -15,4 +15,5 @@ urlpatterns = [
     path('fragment/<int:pk>/sentences',
          views.sentence_list, name='sentence-list'),
     path('sentence/<int:pk>/words', views.word_list, name='word-list'),
+    path('words/<int:pk>/learn/<round>', views.learn_words, name="learn-words"),
 ]

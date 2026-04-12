@@ -98,7 +98,11 @@
             <button class="btn btn-primary btn-lg mr-1 mb-10 mt-10 bg-reclam-blue text-black">
                 Back
             </button>
-            <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black">
+            <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black"
+                    hx-get="{% url 'books:learn-words' round=1 pk=sentence.pk %}"
+                    hx-target="#fragment-detail-container"
+                    hx-swap="outerHTML"
+                    hx-trigger="click, keyup[key == 'ArrowRight'] from:body">
                 Next
             </button>
         </div>
@@ -113,3 +117,30 @@
         </div>
     </div>
 {% endpartialdef word-list %}
+
+{% partialdef learn_words %}
+    <div id="fragment-detail-container">
+        <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
+            {% for word in words %}
+            <div class="mr-1">
+                <p class="mb-2 text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
+                    {{ word }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="flex justify-center">
+            <button class="btn btn-primary btn-lg mr-1 mb-10 mt-10 bg-reclam-blue text-black">
+                Back
+            </button>
+            <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black"
+                    hx-get="{% url 'books:learn-words' round=round pk=sentence.pk %}"
+                    hx-target="#fragment-detail-container"
+                    hx-swap="outerHTML"
+                    hx-trigger="click, keyup[key == 'ArrowRight'] from:body">
+                Next
+            </button>
+        </div>
+    </div>
+
+{% endpartialdef learn_words %}
