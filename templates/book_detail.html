@@ -84,11 +84,13 @@
 
 {% partialdef word-list %}
     <div id="fragment-detail-container">
-        <div class="mt-20 ml-20 mr-20 text-balance">
+        <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
             {% for word in words %}
-                <p class="mb-10 text-lg/10 tracking-wide font-[DocumentaSansSTRegular]">
+            <div class="mr-1">
+                <p class="mb-2 text-lg/10 tracking-wide font-[DocumentaSansSTRegular]">
                     {{ word.text }}
                 </p>
+            </div>
             {% endfor %}
         </div>
     
