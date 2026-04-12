@@ -46,14 +46,14 @@
                     hx-target="closest body"
                     hx-swap="outerHTML"
                     hx-trigger="click, keyup[key == 'ArrowLeft'] from:body">
-                Back
+                Back to Fragments
             </button>
             <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black"
                     hx-get="{% url 'books:sentence-list' fragment.pk %}"
                     hx-target="#fragment-detail-container"
                     hx-swap="outerHTML"
                     hx-trigger="click, keyup[key == 'ArrowRight'] from:body">
-                Next
+                See Sentences
             </button>
         </div>
     </div>
@@ -76,7 +76,7 @@
                     hx-target="#fragment-detail-container"
                     hx-swap="outerHTML"
                     hx-trigger="click, keyup[key == 'ArrowLeft'] from:body">
-                Back
+                Back to Fragment
             </button>
         </div>
     </div>
@@ -100,7 +100,7 @@
                     hx-target="#fragment-detail-container"
                     hx-swap="outerHTML"
                     hx-trigger="click, keyup[key == 'ArrowLeft'] from:body">
-                Back
+                Back to Sentences
             </button>
         </div>
     </div>
