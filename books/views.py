@@ -173,16 +173,20 @@ def remove_random_letters(word, number):
 def learn_words(request, pk, round):
     sentence = get_object_or_404(Sentence, pk=pk)
     words = Word.objects.filter(sentence=sentence)
-    incomplete_words = []
+    learn_words = []
     for word in words:
-        incomplete_word = remove_random_letters(word.text, round)
-        incomplete_words.append(incomplete_word)
+        learn_word = remove_random_letters(word.text, round)
+        learn_words.append(learn_word)
+
+    zipped_words = zip(learn_words, words)
 
     return render(
         request,
         "book_detail.html#learn_words",
         {
-            "words": incomplete_words,
+            # "learn_words": learn_words,
+            # "words": words,
+            "zipped_words": zipped_words,
             "sentence": sentence,
             "round": int(round) + 1
         }

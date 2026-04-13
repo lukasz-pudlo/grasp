@@ -121,10 +121,11 @@
 {% partialdef learn_words %}
     <div id="fragment-detail-container">
         <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
-            {% for word in words %}
+            {% for learn_word, word in zipped_words %}
             <div class="mr-1">
                 <p class="mb-2 text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
                     {{ word }}
+                    {{ learn_word }}
                 </p>
             </div>
             {% endfor %}
