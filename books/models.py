@@ -1,3 +1,4 @@
+from django.db.models.functions import Length
 from django.db import models
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import ordinal
@@ -105,6 +106,11 @@ class Word(models.Model):
     text = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    letter_count = models.GeneratedField(
+        expression=Length("text"),
+        output_field=models.IntegerField(),
+        db_persist=True,
+    )
 
 
 class Author(models.Model):

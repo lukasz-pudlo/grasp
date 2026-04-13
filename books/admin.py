@@ -74,6 +74,6 @@ class SentenceAdmin(admin.ModelAdmin):
 
 @admin.register(Word)
 class WordAdmin(admin.ModelAdmin):
-    list_display = ["sentence", "text", "created", "updated"]
+    list_display = ["sentence", "text", "created", "updated", "letter_count"]
     search_fields = ["sentence", "text"]
     show_facets = admin.ShowFacets.ALWAYS
