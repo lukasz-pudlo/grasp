@@ -86,8 +86,8 @@
     <div id="fragment-detail-container">
         <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
             {% for word in words %}
-            <div class="mr-1">
-                <p class="mb-2 text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
+            <div class="mr-5 mb-2 rounded-md border border-black py-2 px-{{ word.letter_count }}">
+                <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
                     {{ word.text }}
                 </p>
             </div>
@@ -122,9 +122,9 @@
     <div id="fragment-detail-container">
         <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
             {% for learn_word, word in zipped_words %}
-            <div class="mr-1">
-                <p class="mb-2 text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
-                    {{ word }}
+            <!-- <div class="mr-5 mb-2 rounded-md border border-black py-2 px-{{ word.letter_count }} min-w-{{ word.letter_count }}"> -->
+            <div class="mr-5 mb-2 box-border border-2 w-[{{ word.letter_count }}px]">
+                <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
                     {{ learn_word }}
                 </p>
             </div>
