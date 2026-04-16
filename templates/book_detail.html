@@ -123,11 +123,10 @@
     <div id="fragment-detail-container">
         <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
             {% for learn_word, word in zipped_words %}
-            <button
-                class="mr-5 mb-2 btn btn-info bg-reclam-white">
-                <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold visible">
-                    {{ learn_word }}
-                    <span class="invisible">{{ word.text }}</span>
+            <button x-data="{ show_word: false }" x-on:click="show_word = ! show_word" class="mr-5 mb-2 btn btn-info bg-reclam-white">
+                <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
+                    <span :class="show_word ? 'invisible' : 'visible'">{{ learn_word }}</span>
+                    <span :class="show_word ? 'visible' : 'invisible'">{{ word.text }}</span>
                 </p>
             </button>
             {% endfor %}
