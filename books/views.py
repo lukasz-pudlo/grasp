@@ -184,8 +184,6 @@ def learn_words(request, pk, round):
         request,
         "book_detail.html#learn_words",
         {
-            # "learn_words": learn_words,
-            # "words": words,
             "zipped_words": zipped_words,
             "sentence": sentence,
             "round": int(round) + 1
