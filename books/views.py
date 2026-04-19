@@ -189,3 +189,16 @@ def learn_words(request, pk, round):
             "round": int(round) + 1
         }
     )
+
+
+def reveal_word(request, pk, round):
+    word = get_object_or_404(Word, pk=pk)
+
+    return render(
+        request,
+        "book_detail.html#reveal_word",
+        {
+            "word": word,
+            "round": int(round) - 1
+        }
+    )
