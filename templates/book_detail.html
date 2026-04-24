@@ -154,7 +154,7 @@
 
 {% partialdef reveal_word %}
     <p 
-        hx-get="{% url 'books:learn-words' round=round pk=word.sentence.pk %}"
+        <!-- hx-get="{% url 'books:learn-words' round=round pk=word.sentence.pk %}"
         hx-target="#fragment-detail-container"
         hx-swap="outerHTML"
         hx-trigger="click"

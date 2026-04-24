@@ -160,23 +160,26 @@ def word_list(request, pk):
     )
 
 
-def remove_random_letters(word, number):
-    index = random.randrange(len(word))
-    incomplete_word = ""
-    if int(number) > len(word):
-        word.replace(word, "")
-    else:
-        incomplete_word = word[:index] + word[index + int(number):]
-    return incomplete_word
-
-
 def learn_words(request, pk, round):
     sentence = get_object_or_404(Sentence, pk=pk)
-    words = Word.objects.filter(sentence=sentence)
+    words = Word.objects.filter(
+        sentence=sentence)
+
     learn_words = []
+
+    # We have the sentence and we have the word.
+    # Choose a number of random words that will have
+    # all but the first letter removed.
+    word_list = list(words)
+    words_to_truncate = random.sample(word_list, int(round))
     for word in words:
-        learn_word = remove_random_letters(word.text, round)
-        learn_words.append(learn_word)
+        if word in words_to_truncate:
+            print(f"Word {word.text} identified to be truncated")
+            learn_words.append(word.text[0])
+        else:
+            print(f"Word {word.text} to be added in full")
+            learn_words.append(word.text)
+    print(f"learn_words after the loop: {learn_words}")
 
     zipped_words = zip(learn_words, words)
 
@@ -191,7 +194,7 @@ def learn_words(request, pk, round):
     )
 
 
-def reveal_word(request, pk, round):
+def reveal_word(request, round, pk):
     word = get_object_or_404(Word, pk=pk)
 
     return render(
@@ -199,6 +202,6 @@ def reveal_word(request, pk, round):
         "book_detail.html#reveal_word",
         {
             "word": word,
-            "round": int(round) - 1
+            "round": round
         }
     )
