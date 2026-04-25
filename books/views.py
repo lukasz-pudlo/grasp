@@ -166,7 +166,6 @@ def word_list(request, pk):
 # the value of round is 2.
 def learn_words(request, pk, round):
     sentence = get_object_or_404(Sentence, pk=pk)
-    # Is it not possible to from sentence to words?
     words = sentence.words.all()
 
     learn_words = []
@@ -175,13 +174,24 @@ def learn_words(request, pk, round):
     # Choose a number of random words that will have
     # all but the first letter removed.
     word_list = list(words)
-    words_to_truncate = random.sample(word_list, int(round))
-    for word in words:
-        if word in words_to_truncate:
-            learn_words.append(word.text[0])
+    if int(round) < len(words):
+        if int(round) * 3 < len(words):
+            words_to_process = random.sample(word_list, int(round) * 3)
+            for word in words:
+                if word in words_to_process:
+                    learn_words.append(word.text[0])
+                else:
+                    learn_words.append(word.text)
         else:
-            learn_words.append(word.text)
-    print(f"learn_words after the loop: {learn_words}")
+            words_to_process = random.sample(word_list, int(round))
+            for word in words:
+                if word in words_to_process:
+                    learn_words.append("")
+                else:
+                    learn_words.append(word.text)
+    else:
+        for word in words:
+            learn_words.append("")
 
     zipped_words = zip(learn_words, words)
 
@@ -204,6 +214,6 @@ def reveal_word(request, round, pk):
         "book_detail.html#reveal_word",
         {
             "word": word,
-            "round": int(round) - 1
+            "round": int(round)
         }
     )
