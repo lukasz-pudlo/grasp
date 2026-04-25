@@ -128,6 +128,10 @@ def fragment_detail(request, pk):
     )
 
 
+# TODO
+# Refer to Chapter 14 in Antonio Mele's Django 5 By Example,
+# https://learning.oreilly.com/library/view/django-5-by/9781805125457/Text/Chapter_14.xhtml#_idParaDest-380,
+# to implement caching.
 def sentence_list(request, pk):
     fragment = get_object_or_404(Fragment, pk=pk)
     sentences = fragment.sentences.all()
@@ -156,6 +160,10 @@ def word_list(request, pk):
     )
 
 
+# When first coming into this view from word-list partial,
+# the value of round is 1.
+# When this view is rendered with the learn-words partial,
+# the value of round is 2.
 def learn_words(request, pk, round):
     sentence = get_object_or_404(Sentence, pk=pk)
     # Is it not possible to from sentence to words?
@@ -170,10 +178,8 @@ def learn_words(request, pk, round):
     words_to_truncate = random.sample(word_list, int(round))
     for word in words:
         if word in words_to_truncate:
-            print(f"Word {word.text} identified to be truncated")
             learn_words.append(word.text[0])
         else:
-            print(f"Word {word.text} to be added in full")
             learn_words.append(word.text)
     print(f"learn_words after the loop: {learn_words}")
 
@@ -198,6 +204,6 @@ def reveal_word(request, round, pk):
         "book_detail.html#reveal_word",
         {
             "word": word,
-            "round": round
+            "round": int(round) - 1
         }
     )
