@@ -102,7 +102,7 @@ class Sentence(models.Model):
 
 class Word(models.Model):
     sentence = models.ForeignKey(
-        Sentence, on_delete=models.CASCADE, related_name="sentences")
+        Sentence, on_delete=models.CASCADE, related_name="words")
     text = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
