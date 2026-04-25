@@ -201,7 +201,7 @@ def learn_words(request, pk, round):
         {
             "zipped_words": zipped_words,
             "sentence": sentence,
-            "round": int(round) + 1
+            "round": int(round)
         }
     )
 
