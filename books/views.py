@@ -130,9 +130,7 @@ def fragment_detail(request, pk):
 
 def sentence_list(request, pk):
     fragment = get_object_or_404(Fragment, pk=pk)
-    sentences = Sentence.objects.filter(
-        fragment=fragment
-    )
+    sentences = fragment.sentences.all()
 
     return render(
         request,
@@ -146,9 +144,7 @@ def sentence_list(request, pk):
 
 def word_list(request, pk):
     sentence = get_object_or_404(Sentence, pk=pk)
-    words = Word.objects.filter(
-        sentence=sentence
-    )
+    words = sentence.words.all()
 
     return render(
         request,
@@ -162,8 +158,8 @@ def word_list(request, pk):
 
 def learn_words(request, pk, round):
     sentence = get_object_or_404(Sentence, pk=pk)
-    words = Word.objects.filter(
-        sentence=sentence)
+    # Is it not possible to from sentence to words?
+    words = sentence.words.all()
 
     learn_words = []
 
