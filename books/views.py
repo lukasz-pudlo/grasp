@@ -163,7 +163,7 @@ def word_list(request, pk):
 # When first coming into this view from word-list partial,
 # the value of round is 1.
 # When this view is rendered with the learn-words partial,
-# the value of round is 2.
+# the value of round is 2, etc.
 def learn_words(request, pk, round):
     sentence = get_object_or_404(Sentence, pk=pk)
     words = sentence.words.all()
@@ -174,6 +174,8 @@ def learn_words(request, pk, round):
     # We have the sentence and we have the word.
     # Choose a number of random words that will have
     # all but the first letter removed.
+    # When round is greater than the sample,
+    # start removing entire words.
     word_list = list(words)
     if int(round) < len(words):
         if int(round) * 3 < len(words):
