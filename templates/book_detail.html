@@ -122,7 +122,7 @@
 {% partialdef learn_words %}
     <div id="fragment-detail-container">
         <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
-            {% for learn_word, word in zipped_words %}
+            {% for learn_word, word_to_show, word in zipped_words %}
             <button class="mr-5 mb-2 btn btn-info bg-reclam-white">
                 <p 
                 hx-get="{% url 'books:reveal-word' pk=word.pk round=round %}"
@@ -130,8 +130,8 @@
                 hx-swap="outerHTML"
                 hx-trigger="click"
                 class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
-                    <span class="">{{ learn_word }}</span>
-                    <span class="invisible">{{ word.text }}</span>
+                    <span>{{ learn_word }}</span>
+                    <span class="invisible">{{ word_to_show }}</span>
                 </p>
             </button>
             {% endfor %}
@@ -157,12 +157,7 @@
 {% endpartialdef learn_words %}
 
 {% partialdef reveal_word %}
-    <p 
-        <!-- hx-get="{% url 'books:learn-words' round=round pk=word.sentence.pk %}"
-        hx-target="#fragment-detail-container"
-        hx-swap="outerHTML"
-        hx-trigger="click"
-        class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
-            {{ word.text }}
+    <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
+        <span>{{ word.text }}</span>
     </p>
 {% endpartialdef reveal_word %}

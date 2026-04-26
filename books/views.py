@@ -169,6 +169,7 @@ def learn_words(request, pk, round):
     words = sentence.words.all()
 
     learn_words = []
+    words_to_show = []
 
     # We have the sentence and we have the word.
     # Choose a number of random words that will have
@@ -180,20 +181,25 @@ def learn_words(request, pk, round):
             for word in words:
                 if word in words_to_process:
                     learn_words.append(word.text[0])
+                    words_to_show.append(word.text[1:])
                 else:
                     learn_words.append(word.text)
+                    words_to_show.append("")
         else:
             words_to_process = random.sample(word_list, int(round))
             for word in words:
                 if word in words_to_process:
                     learn_words.append("")
+                    words_to_show.append(word.text)
                 else:
                     learn_words.append(word.text)
+                    words_to_show.append("")
     else:
         for word in words:
             learn_words.append("")
+            words_to_show.append(word.text)
 
-    zipped_words = zip(learn_words, words)
+    zipped_words = zip(learn_words, words_to_show, words)
 
     return render(
         request,
