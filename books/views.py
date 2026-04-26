@@ -177,6 +177,7 @@ def learn_words(request, pk, round):
     # When round is greater than the sample,
     # start removing entire words.
     word_list = list(words)
+    finished = False
     if int(round) < len(words):
         if int(round) * 3 < len(words):
             words_to_process = random.sample(word_list, int(round) * 3)
@@ -197,6 +198,7 @@ def learn_words(request, pk, round):
                     learn_words.append(word.text)
                     words_to_show.append("")
     else:
+        finished = True
         for word in words:
             learn_words.append("")
             words_to_show.append(word.text)
@@ -209,7 +211,8 @@ def learn_words(request, pk, round):
         {
             "zipped_words": zipped_words,
             "sentence": sentence,
-            "round": int(round)
+            "round": int(round),
+            "finished": finished
         }
     )
 

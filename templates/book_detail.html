@@ -144,13 +144,23 @@
                 hx-trigger="click, keyup[key == 'ArrowLeft'] from:body">
                 Back
             </button>
-            <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black"
-                    hx-get="{% url 'books:learn-words' round=round|add:'1' pk=sentence.pk %}"
-                    hx-target="#fragment-detail-container"
-                    hx-swap="outerHTML"
-                    hx-trigger="click, keyup[key == 'ArrowRight'] from:body">
-                Next
-            </button>
+                {% if finished %}
+                    <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-green text-reclam-white"
+                            hx-get="{% url 'books:review-words' pk=sentence.pk %}"
+                            hx-target="#fragment-detail-container"
+                            hx-swap="outerHTML"
+                            hx-trigger="click, keyup[key == 'ArrowRight'] from:body">
+                            Review
+                    </button>
+                {% else %}
+                    <button class="btn btn-primary btn-lg mr-1 mb-5 mt-10 bg-reclam-blue text-black"
+                            hx-get="{% url 'books:learn-words' round=round|add:'1' pk=sentence.pk %}"
+                            hx-target="#fragment-detail-container"
+                            hx-swap="outerHTML"
+                            hx-trigger="click, keyup[key == 'ArrowRight'] from:body">
+                            Next
+                    </button>
+                {% endif %}
         </div>
     </div>
 
