@@ -16,6 +16,6 @@ urlpatterns = [
          views.sentence_list, name='sentence-list'),
     path('sentence/<int:pk>/words', views.word_list, name='word-list'),
     path('words/<int:pk>/learn/<round>', views.learn_words, name="learn-words"),
-    path('words/<round>/reveal/<int:pk>',
+    path('words/reveal/<int:pk>',
          views.reveal_word, name="reveal-word"),
 ]

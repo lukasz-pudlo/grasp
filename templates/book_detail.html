@@ -125,7 +125,7 @@
             {% for learn_word, word_to_show, word in zipped_words %}
             <button class="mr-5 mb-2 btn btn-info bg-reclam-white">
                 <p 
-                hx-get="{% url 'books:reveal-word' pk=word.pk round=round %}"
+                hx-get="{% url 'books:reveal-word' pk=word.pk %}"
                 hx-target="this"
                 hx-swap="outerHTML"
                 hx-trigger="click"
