@@ -18,4 +18,8 @@ urlpatterns = [
     path('words/<int:pk>/learn/<round>', views.learn_words, name="learn-words"),
     path('words/reveal/<int:pk>',
          views.reveal_word, name="reveal-word"),
+    path('words/review/<int:pk>',
+         views.review_words, name="review-words"),
+    path('words/verify/<int:pk>',
+         views.verify_word, name="verify-word"),
 ]

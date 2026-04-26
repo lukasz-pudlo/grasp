@@ -171,3 +171,49 @@
         <span>{{ word.text }}</span>
     </p>
 {% endpartialdef reveal_word %}
+
+{% partialdef review_words %}
+    <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
+        {% for word in words %}
+            <button class="mr-5 mb-2 btn btn-info bg-reclam-white">
+                <input
+                    class="w-full h-full outline-none"
+                    type="word_text"
+                    name="word-to-verify"
+                    autocomplete="off"
+                    hx-get="{% url 'books:verify-word' pk=word.pk %}"
+                    hx-target="closest button"
+                    hx-swap="outerHTML"
+                    hx-trigger="input changed delay:1s"
+                    class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold"
+                >    
+            </button>
+        {% endfor %}
+    </div>
+{% endpartialdef review_words %}
+
+{% partialdef verify_word %}
+    <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
+        {% if verified %}
+        <button class="mr-5 mb-2 btn btn-info bg-reclam-white">
+            <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
+                {{ word.text }}
+            </p>
+        <button>
+        {% else %}
+            <button class="mr-5 mb-2 btn btn-info outline-2 outline-reclam-orange">
+                <input
+                    class="w-full h-full outline-none"
+                    type="word_text"
+                    name="word-to-verify"
+                    autocomplete="off"
+                    hx-get="{% url 'books:verify-word' pk=word.pk %}"
+                    hx-target="closest button"
+                    hx-swap="outerHTML"
+                    hx-trigger="input changed delay:1s"
+                    class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold"
+                >    
+            </button>
+        {% endif %}
+    </p>
+{% endpartialdef verify_word %}

@@ -227,3 +227,35 @@ def reveal_word(request, pk):
             "word": word
         }
     )
+
+
+def review_words(request, pk):
+    sentence = get_object_or_404(Sentence, pk=pk)
+    words = sentence.words.all()
+
+    return render(
+        request,
+        "book_detail.html#review_words",
+        {
+            "words": words
+        }
+    )
+
+
+def verify_word(request, pk):
+    word_to_verify = request.GET.get("word-to-verify", "")
+    word = get_object_or_404(Word, pk=pk)
+
+    context = {
+        "word": word,
+    }
+    if word_to_verify == word.text:
+        context["verified"] = True
+    else:
+        context["verified"] = False
+
+    return render(
+        request,
+        "book_detail.html#verify_word",
+        context
+    )
