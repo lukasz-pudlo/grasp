@@ -12,6 +12,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Tailwind -->
     <link href="{% static 'css/tailwind.css' %}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/hyperscript.org@0.9.91/dist/_hyperscript.min.js" integrity="sha384-OT9bNmUa5rM34SmxFpRftn2F6GbgM/4xnTmn0z106OE5uvsigkdtUMOpdPKOigyO" crossorigin="anonymous"></script>
   </head>
   <!-- This should be enough to make POST calls -->
   <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
