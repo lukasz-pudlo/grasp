@@ -20,6 +20,8 @@ urlpatterns = [
          views.reveal_word, name="reveal-word"),
     path('words/review/<int:pk>',
          views.review_words, name="review-words"),
+    path('words/review/<int:pk>/input',
+         views.input_review_word, name="input-review-word"),
     path('words/verify/<int:pk>',
          views.verify_word, name="verify-word"),
 ]

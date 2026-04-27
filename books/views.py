@@ -242,6 +242,17 @@ def review_words(request, pk):
     )
 
 
+def input_review_word(request, pk):
+    word = get_object_or_404(Word, pk=pk)
+    return render(
+        request,
+        "book_detail.html#input_review_word",
+        {
+            "word": word
+        }
+    )
+
+
 def verify_word(request, pk):
     word_to_verify = request.GET.get("word-to-verify", "")
     word = get_object_or_404(Word, pk=pk)
