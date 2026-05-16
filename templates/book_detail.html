@@ -174,47 +174,48 @@
 {% partialdef review_words %}
     <div class="flex flex-wrap mt-20 ml-20 mr-20 text-balance">
         {% for word in words %}
-            <button class="mr-5 mb-2 btn btn-info bg-reclam-white">
-                <p 
+            {% partialdef invisible_word inline %}
+                <button class="mr-5 mb-2 btn btn-info bg-reclam-white"
                     hx-get="{% url 'books:input-review-word' pk=word.pk %}"
                     hx-target="this"
                     hx-swap="outerHTML"
                     hx-trigger="click"
                     class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
                     <span class="invisible">{{ word.text }}</span>
-                </p>
-            </button>
+                </button>
+            {% endpartialdef invisible_word %}
         {% endfor %}
     </div>
 {% endpartialdef review_words %}
 
 {% partialdef input_review_word %}
-    <input
-        class="w-full h-full outline-none"
-        type="word_text"
-        name="word-to-verify"
-        autocomplete="off"
-        hx-get="{% url 'books:verify-word' pk=word.pk %}"
-        hx-target="this"
-        hx-swap="outerHTML"
-        hx-trigger="input changed delay:1s"
-        class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold"
-    >
+    <button _="on click elsewhere
+               fetch '{% url 'books:invisible-word' pk=word.pk %}'
+               put the result into my outerHTML
+               then htmx.process(document.body)"
+               class="mr-5 mb-2 btn btn-info bg-reclam-white">
+        <input
+            class="outline-none"
+            type="word_text"
+            name="word-to-verify"
+            autocomplete="off"
+            hx-get="{% url 'books:verify-word' pk=word.pk %}"
+            hx-target="closest button"
+            hx-swap="outerHTML"
+            hx-trigger="input changed delay:1s"
+            class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold"
+        />
+    </button>
 {% endpartialdef input_review_word %}
 
 {% partialdef verify_word %}
     {% if verified %}
+    <button class="mr-5 mb-2 btn btn-info bg-reclam-white">
         <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
             {{ word.text }}
         </p>
+    </button>
     {% else %}
-        <p
-        hx-get="{% url 'books:input-review-word' pk=word.pk %}"
-        hx-target="this"
-        hx-swap="outerHTML"
-        hx-trigger="click"
-        class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
-            <span class="invisible">{{ word.text }}</span>
-        </p>
+        {% partial invisible_word %}
     {% endif %}
 {% endpartialdef verify_word %}

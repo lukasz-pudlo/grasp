@@ -22,6 +22,9 @@ urlpatterns = [
          views.review_words, name="review-words"),
     path('words/review/<int:pk>/input',
          views.input_review_word, name="input-review-word"),
+    # If you want those to appear in address bar, use hx-boost
     path('words/verify/<int:pk>',
          views.verify_word, name="verify-word"),
+    path('words/invisible/<int:pk>',
+         views.invisible_word, name="invisible-word"),
 ]

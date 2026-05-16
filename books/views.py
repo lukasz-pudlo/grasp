@@ -270,3 +270,15 @@ def verify_word(request, pk):
         "book_detail.html#verify_word",
         context
     )
+
+
+def invisible_word(request, pk):
+    word = get_object_or_404(Word, pk=pk)
+
+    return render(
+        request,
+        "book_detail.html#invisible_word",
+        {
+            "word": word
+        }
+    )

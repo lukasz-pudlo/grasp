@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.2.0",
+    "hyperscript.org": "^0.9.91",
     "tailwindcss": "^4.2.0"
   },
   "devDependencies": {
