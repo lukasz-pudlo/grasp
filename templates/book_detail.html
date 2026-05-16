@@ -195,7 +195,7 @@
                then htmx.process(document.body)"
                class="mr-5 mb-2 btn btn-info bg-reclam-white">
         <input
-            class="outline-none"
+            class="outline-none text-lg/10 tracking-wide font-[DocumentaSansSTRegular]"
             type="word_text"
             name="word-to-verify"
             autocomplete="off"
@@ -203,7 +203,6 @@
             hx-target="closest button"
             hx-swap="outerHTML"
             hx-trigger="input changed delay:1s"
-            class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold"
         />
     </button>
 {% endpartialdef input_review_word %}
