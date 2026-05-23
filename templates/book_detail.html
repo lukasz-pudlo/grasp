@@ -179,7 +179,7 @@
                     hx-get="{% url 'books:input-review-word' pk=word.pk %}"
                     hx-target="this"
                     hx-swap="outerHTML"
-                    hx-trigger="click"
+                    hx-trigger="click, focus"
                     class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
                     <span class="invisible">{{ word.text }}</span>
                 </button>
@@ -189,7 +189,7 @@
 {% endpartialdef review_words %}
 
 {% partialdef input_review_word %}
-    <button _="on click elsewhere
+    <button _="on click elsewhere or focusout
                fetch '{% url 'books:invisible-word' pk=word.pk %}'
                put the result into my outerHTML
                then htmx.process(document.body)"
@@ -210,7 +210,9 @@
 
 {% partialdef verify_word %}
     {% if verified %}
-    <button class="mr-5 mb-2 btn btn-info bg-reclam-white">
+    <button 
+        hx-on::after-settle="this.nextElementSibling.focus()"
+        class="mr-5 mb-2 btn btn-info bg-reclam-white">
         <p class="text-lg/10 tracking-wide font-[DocumentaSansSTRegular] hover:font-extrabold">
             {{ word.text }}
         </p>
